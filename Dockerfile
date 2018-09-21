@@ -23,7 +23,7 @@ WORKDIR /app
 
 RUN go get github.com/syndtr/goleveldb/leveldb
 
-ENV INTERACTIONS=1000000000
+ENV SECONDS=10
 
 RUN go build -o main .
 
