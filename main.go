@@ -2,9 +2,10 @@ package main
 
 import (
 	"./db"
-	"./random"
 	"os"
 	"strconv"
+	"./file"
+	"strings"
 )
 
 func main() {
@@ -12,19 +13,16 @@ func main() {
 
 	var env, err = strconv.Atoi(os.Getenv("SECONDS"))
 	arraysLength := env * 1000000
+	file.CreateKeyValues(arraysLength, 32, 100)
+
+	d1 := file.Read("keys.txt")
+	d2 := file.Read("values.txt")
+
+	keys := strings.Split(d1, ",")
+	values := strings.Split(d2, ",")
 
 	if err != nil {
 		panic(err.Error())
-	}
-
-	keys := make([]string, arraysLength)
-	values := make([]string, arraysLength)
-
-	for i := 0; i < arraysLength; i++ {
-		rndString := random.RandomString(32)
-		rndString1 := random.RandomString(1000)
-		keys[i] = rndString
-		values[i] = rndString1
 	}
 
 	db.Put(db.Connect(), keys, values, arraysLength)

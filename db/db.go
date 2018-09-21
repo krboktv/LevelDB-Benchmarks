@@ -1,8 +1,8 @@
 package db
 
 import (
+	"../file"
 	"github.com/syndtr/goleveldb/leveldb"
-	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
@@ -34,7 +34,7 @@ func Get(db *leveldb.DB, key []string, count int) {
 	println("Get query (query per second)")
 	qps := i / seconds
 	println(qps)
-	err := ioutil.WriteFile("get.txt", []byte(strconv.Itoa(qps)), 0666)
+	file.Write("get.txt", strconv.Itoa(qps))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -50,7 +50,7 @@ func Put(db *leveldb.DB, key []string, value []string, count int) {
 	println("Put query (query per second)")
 	qps := i / seconds
 	println(qps)
-	err := ioutil.WriteFile("put.txt", []byte(strconv.Itoa(qps)), 0666)
+	file.Write("put.txt", strconv.Itoa(qps))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -66,7 +66,7 @@ func Delete(db *leveldb.DB, key []string, count int) {
 	println("Delete query (query per second)")
 	qps := i / seconds
 	println(qps)
-	err := ioutil.WriteFile("delete.txt", []byte(strconv.Itoa(qps)), 0666)
+	file.Write("delete.txt", strconv.Itoa(qps))
 	if err != nil {
 		log.Fatal(err)
 	}
