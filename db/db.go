@@ -25,19 +25,11 @@ func Connect() (*leveldb.DB)  {
 	return db
 }
 
-func Get(db *leveldb.DB, key []string, count int) {
+func Get(db *leveldb.DB, key []string) {
 	var i= 0
 
 	endSignal := make(chan bool, 1)
 	go sleep(seconds, endSignal)
-
-	pollInt := time.Second
-
-	go func() {
-		for ; i < count; i++ {
-			db.Get([]byte(key[i]), nil)
-		}
-	}()
 
 	for {
 		select {
@@ -51,24 +43,18 @@ func Get(db *leveldb.DB, key []string, count int) {
 			}
 			fmt.Println("The end!")
 			return
+		default:
+			db.Get([]byte(key[0]), nil)
+			i++
 		}
-		time.Sleep(pollInt)
 	}
 }
 
-func Put(db *leveldb.DB, key []string, value []string, count int) {
+func Put(db *leveldb.DB, key []string, value []string) {
 	var i= 0
 
 	endSignal := make(chan bool, 1)
 	go sleep(seconds, endSignal)
-
-	pollInt := time.Second
-
-	go func() {
-		for ; i < count; i++ {
-			db.Put([]byte(key[i]), []byte(value[i]), nil)
-		}
-	}()
 
 	for {
 		select {
@@ -82,24 +68,18 @@ func Put(db *leveldb.DB, key []string, value []string, count int) {
 			}
 			fmt.Println("The end!")
 			return
+		default:
+			db.Put([]byte(key[0]), []byte(value[0]), nil)
+			i++
 		}
-		time.Sleep(pollInt)
 	}
 }
 
-func Delete(db *leveldb.DB, key []string, count int) {
-	var i= 0
+func Delete(db *leveldb.DB, key []string) {
+	var i = 0
 
 	endSignal := make(chan bool, 1)
 	go sleep(seconds, endSignal)
-
-	pollInt := time.Microsecond
-
-	go func() {
-		for ; i < count; i++ {
-			db.Delete([]byte(key[i]), nil)
-		}
-	}()
 
 	for {
 		select {
@@ -113,8 +93,10 @@ func Delete(db *leveldb.DB, key []string, count int) {
 			}
 			fmt.Println("The end!")
 			return
+		default:
+			db.Delete([]byte(key[0]), nil)
+			i++
 		}
-		time.Sleep(pollInt)
 	}
 }
 
