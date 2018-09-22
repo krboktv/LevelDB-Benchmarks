@@ -10,6 +10,7 @@ func main() {
 	db.Connect()
 
 	//var env, err = strconv.Atoi(os.Getenv("SECONDS"))
+ 	//arraysLength := env * 1000000
 	arraysLength := 2000000000
 	//file.CreateKeyValues(arraysLength, 32, 100)
 
