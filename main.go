@@ -15,11 +15,11 @@ func main() {
 
 	d1 := file.Read("keys.txt")
 	d2 := file.Read("values.txt")
-	println("Count of keys: " + strconv.Itoa(len(d1)))
-	println("Count of values: " + strconv.Itoa(len(d2)))
 
 	keys := strings.Split(d1, ",")
 	values := strings.Split(d2, ",")
+	println("Count of keys: " + strconv.Itoa(len(keys)))
+	println("Count of values: " + strconv.Itoa(len(values)))
 
 	db.Put(db.Connect(), keys, values)
 

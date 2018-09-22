@@ -44,7 +44,7 @@ func Get(db *leveldb.DB, key []string) {
 			fmt.Println("The end!")
 			return
 		default:
-			db.Get([]byte(key[0]), nil)
+			db.Get([]byte(key[i]), nil)
 			i++
 		}
 	}
@@ -69,7 +69,7 @@ func Put(db *leveldb.DB, key []string, value []string) {
 			fmt.Println("The end!")
 			return
 		default:
-			db.Put([]byte(key[0]), []byte(value[0]), nil)
+			db.Put([]byte(key[i]), []byte(value[i]), nil)
 			i++
 		}
 	}
@@ -94,7 +94,7 @@ func Delete(db *leveldb.DB, key []string) {
 			fmt.Println("The end!")
 			return
 		default:
-			db.Delete([]byte(key[0]), nil)
+			db.Delete([]byte(key[i]), nil)
 			i++
 		}
 	}
