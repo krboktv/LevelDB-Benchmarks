@@ -11,7 +11,7 @@ SECONDS= Count of seconds for benchmark
 RUN
 ```
 
-SECONDS=10 go run main.go
+SECONDS=1 go run main.go
 ```
 
 or
