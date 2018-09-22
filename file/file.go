@@ -7,13 +7,13 @@ import (
 	"../random"
 )
 
-func CreateKeyValues(count int, size1 int, size2 int)  {
+func CreateKeyValues(count int, minSize int, maxSize int)  {
 	var str1 string
 	var str2 string
 
 	for i := 0; i < count; i++ {
-		rndString1 := random.RandomString(size1)
-		rndString2 := random.RandomString(size2)
+		rndString1 := random.RandString(32)
+		rndString2 := random.RandString(random.RandInt(minSize, maxSize))
 
 		str1 += rndString1 +  ","
 		str2 += rndString2 +  ","
