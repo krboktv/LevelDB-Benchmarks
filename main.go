@@ -3,6 +3,7 @@ package main
 import (
 	"./db"
 	"./file"
+	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -11,6 +12,7 @@ import (
 func main() {
 	db.Connect()
 
+	fmt.Println(os.Getenv("SECONDS"))
 	var env, err = strconv.Atoi(os.Getenv("SECONDS"))
 	file.CreateKeyValues(env * 10000000, 32, 100)
 
