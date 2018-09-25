@@ -3,6 +3,7 @@ package main
 import (
 	"./db"
 	"./file"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -10,8 +11,12 @@ import (
 func main() {
 	db.Connect()
 
-	//var env, err = strconv.Atoi(os.Getenv("SECONDS"))
-	//file.CreateKeyValues(env, 32, 100)
+	var env, err = strconv.Atoi(os.Getenv("SECONDS"))
+	file.CreateKeyValues(env * 10000000, 32, 100)
+
+	if err != nil {
+		panic(err.Error())
+	}
 
 	d1 := file.Read("keys.txt")
 	d2 := file.Read("values.txt")
