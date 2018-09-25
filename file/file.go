@@ -131,7 +131,7 @@ func generate(str1 string, str2 string, minSize int, maxSize int, i int, streamN
 	str1 += rndString1 +  ","
 	str2 += rndString2 +  ","
 
-	if i % 1000000 == 0 {
+	if i % 10000 == 0 {
 		k := Read("keys"+strconv.Itoa(streamNum)+".txt")
 		v := Read("values"+strconv.Itoa(streamNum)+".txt")
 
