@@ -2,11 +2,11 @@ package main
 
 import (
 	"./db"
-	"./file"
 	"fmt"
 	"os"
 	"strconv"
 	"strings"
+	"./file"
 )
 
 func main() {
@@ -19,6 +19,8 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
+
+	file.WriteAllInOneFile(20)
 
 	d1 := file.Read("keys.txt")
 	d2 := file.Read("values.txt")
