@@ -25,6 +25,4 @@ RUN go get github.com/syndtr/goleveldb/leveldb
 
 ENV SECONDS=10
 
-RUN go build -o main .
-
 CMD ["/app/main"]
