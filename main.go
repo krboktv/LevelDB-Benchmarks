@@ -2,25 +2,21 @@ package main
 
 import (
 	"./db"
-	"fmt"
+	"./file"
 	"os"
 	"strconv"
 	"strings"
-	"./file"
 )
 
 func main() {
 	db.Connect()
 
-	fmt.Println(os.Getenv("SECONDS"))
-	var env, err = strconv.Atoi(os.Getenv("SECONDS"))
-	file.CreateKeyValues(env * 10000000, 32, 100)
+	var seconds, err = strconv.Atoi(os.Getenv("SECONDS"))
+	file.CreateKeyValues(seconds*10000000, 32, 100)
 
 	if err != nil {
 		panic(err.Error())
 	}
-
-	file.WriteAllInOneFile(20)
 
 	d1 := file.Read("keys.txt")
 	d2 := file.Read("values.txt")
