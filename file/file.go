@@ -9,9 +9,6 @@ import (
 )
 
 func CreateKeyValues(count int, minSize int, maxSize int)  {
-	var str1 string
-	var str2 string
-
 	done1 := make(chan struct{})
 	done2 := make(chan struct{})
 	done3 := make(chan struct{})
@@ -26,71 +23,91 @@ func CreateKeyValues(count int, minSize int, maxSize int)  {
 	streams := count / 10;
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 1)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 1)
 		}
 		done1 <- struct{}{}
 	}()
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 2)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 2)
 		}
 		done2 <- struct{}{}
 	}()
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 3)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 3)
 		}
 		done3 <- struct{}{}
 	}()
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 4)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 4)
 		}
 		done4 <- struct{}{}
 	}()
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 5)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 5)
 		}
 		done5 <- struct{}{}
 	}()
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 6)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 6)
 		}
 		done6 <- struct{}{}
 	}()
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 7)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 7)
 		}
 		done7 <- struct{}{}
 	}()
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 8)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 8)
 		}
 		done8 <- struct{}{}
 	}()
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 9)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 9)
 		}
 		done9 <- struct{}{}
 	}()
 
 	go func() {
+		var str1 string
+		var str2 string
 		for i := 0; i < streams; i++ {
-			generate(str1, str2, minSize, maxSize, i, 	10)
+			str1, str2 = generate(str1, str2, minSize, maxSize, i, 	10)
 		}
 		done10 <- struct{}{}
 	}()
@@ -122,9 +139,10 @@ func WriteAllInOneFile(countOfFiles int) {
 
 		println(i)
 	}
+
 }
 
-func generate(str1 string, str2 string, minSize int, maxSize int, i int, streamNum int) {
+func generate(str1 string, str2 string, minSize int, maxSize int, i int, streamNum int) (string, string)  {
 	rndString1 := random.RandString(32)
 	rndString2 := random.RandString(random.RandInt(minSize, maxSize))
 
@@ -145,6 +163,8 @@ func generate(str1 string, str2 string, minSize int, maxSize int, i int, streamN
 		Write("./values"+strconv.Itoa(streamNum)+".txt", nv)
 		println(i*10)
 	}
+
+	return str1, str2
 }
 
 func Write(fileName string, text string)  {
