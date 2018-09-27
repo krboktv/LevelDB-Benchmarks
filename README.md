@@ -1,6 +1,6 @@
 # LevelDB-Benchmarks
-Benchmarks for PUT, GET and DELETE queries
-FOR BANKEX Plasma Research
+Benchmarks for PUT, GET and DELETE queries  
+FOR BANKEX Plasma Research  
 https://github.com/BANKEX/plasma-research/issues/7
 
 
