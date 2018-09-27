@@ -41,6 +41,7 @@ func generateKeys(countOfKeys int, c chan string, done chan bool) {
 
 	for j := 0; j < countOfInteractions; j++ {
 		for i := 0; i < oneInteraction; i++ {
+
 			rndString := random.RandString(32)
 
 			str += rndString +  ","
@@ -83,7 +84,6 @@ func readAndWriteValues(c chan string) {
 	for {
 		v := readValues()
 		newV := v + <-c
-		println(newV)
 		writeValues(newV)
 	}
 }
